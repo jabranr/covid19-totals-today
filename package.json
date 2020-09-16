@@ -21,8 +21,10 @@
     "name": "Jabran Rafique",
     "email": "hello@jabran.me"
   },
+  "prettier": "@jabranr-lab/prettier",
   "license": "MIT",
   "devDependencies": {
+    "@jabranr-lab/prettier": "^1.1.0",
     "axios": "^0.20.0",
     "eleventy": "^1.0.6",
     "mkdirp": "^1.0.4"
