@@ -1,0 +1,32 @@
+{
+  "name": "covid-daily-totals",
+  "version": "1.0.0",
+  "main": "get-data.js",
+  "scripts": {
+    "data:prepare": "node fetch-data.js",
+    "data:clean": "rm -rf _site/ countries/*",
+    "prestart": "npm run data:clean && npm run data:prepare",
+    "prebuild": "npm run data:clean && npm run data:prepare",
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "keywords": [
+    "COVID",
+    "Coronavirus",
+    "stats",
+    "COVID19",
+    "COVID-19"
+  ],
+  "author": {
+    "name": "Jabran Rafique",
+    "email": "hello@jabran.me"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "axios": "^0.20.0",
+    "eleventy": "^1.0.6",
+    "mkdirp": "^1.0.4"
+  },
+  "dependencies": {},
+  "description": "Stats for COVID daily totals"
+}
