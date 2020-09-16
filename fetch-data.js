@@ -19,10 +19,10 @@ async function fetchData() {
     );
 
     Countries.forEach(async (country) => {
-      await mkdirp(path.resolve(__dirname, `./${country.Slug}`));
+      await mkdirp(path.resolve(__dirname, `./countries/${country.Slug}`));
 
       fs.writeFile(
-        path.resolve(__dirname, `./${country.Slug}/index.md`),
+        path.resolve(__dirname, `./countries/${country.Slug}/index.md`),
         `---
 layout: layout.njk
 title: COVID daily totals for ${country.Country}
@@ -43,7 +43,7 @@ title: COVID daily totals for ${country.Country}
       );
 
       fs.writeFile(
-        path.resolve(__dirname, `./${country.Slug}/index.json`),
+        path.resolve(__dirname, `./countries/${country.Slug}/index.json`),
         JSON.stringify(country),
         (error) => {
           if (error) {
