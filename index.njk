@@ -1,10 +1,21 @@
 ---
-layout: layout.njk
+layout: base.njk
 ---
 
+<h1>COVID-19 daily totals (Global)</h1>
 <p>NewConfirmed: {{ NewConfirmed }}</p>
 <p>TotalConfirmed: {{ TotalConfirmed }}</p>
 <p>NewDeaths: {{ NewDeaths }}</p>
 <p>TotalDeaths: {{ TotalDeaths }}</p>
 <p>NewRecovered: {{ NewRecovered }}</p>
 <p>TotalRecovered: {{ TotalRecovered }}</p>
+
+<hr />
+
+<ul>
+{%- for item in countries -%}
+  <li data-title="{{item.Slug|slug}}">
+    <a href="/countries/{{ item.Slug | slug }}/">{{ item.Country }}</a>
+  <li>
+{%- endfor -%}
+</ul>

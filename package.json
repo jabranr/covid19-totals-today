@@ -1,10 +1,10 @@
 {
   "name": "covid-daily-totals",
+  "description": "Summary about number of new daily cases for Coronavirus COVID-19",
   "version": "1.0.0",
-  "main": "get-data.js",
   "scripts": {
     "data:prepare": "node fetch-data.js",
-    "data:clean": "rm -rf _site/ countries/*",
+    "data:clean": "rm -rf _site/ _data/* index.json",
     "prestart": "npm run data:clean && npm run data:prepare",
     "prebuild": "npm run data:clean && npm run data:prepare",
     "start": "eleventy --serve",
@@ -27,8 +27,14 @@
     "@jabranr-lab/prettier": "^1.1.0",
     "axios": "^0.20.0",
     "eleventy": "^1.0.6",
-    "mkdirp": "^1.0.4"
+    "husky": "^4.3.0",
+    "mkdirp": "^1.0.4",
+    "pretty-quick": "^3.0.2"
   },
   "dependencies": {},
-  "description": "Stats for COVID daily totals"
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }
