@@ -2,13 +2,35 @@
 layout: base.njk
 ---
 
-<h1>COVID-19 daily totals (Global)</h1>
-<p>NewConfirmed: {{ NewConfirmed }}</p>
-<p>TotalConfirmed: {{ TotalConfirmed }}</p>
-<p>NewDeaths: {{ NewDeaths }}</p>
-<p>TotalDeaths: {{ TotalDeaths }}</p>
-<p>NewRecovered: {{ NewRecovered }}</p>
-<p>TotalRecovered: {{ TotalRecovered }}</p>
+<h1>COVID-19 daily totals</h1>
+<p class="lead">Quick summary about COVID-19 daily cases around the world</p>
+
+<div class="stats">
+  <div class="stats_stat">
+    <h3 class="stats_count">{{ NewConfirmed  }}</h3>
+    <p class="stats_type">New Confirmed</p>
+  </div>
+  <div class="stats_stat">
+    <h3 class="stats_count">{{ TotalConfirmed }}</h3>
+    <p class="stats_type">Total Confirmed</p>
+  </div>
+  <div class="stats_stat">
+    <h3 class="stats_count">{{ NewDeaths }}</h3>
+    <p class="stats_type">New Deaths</p>
+  </div>
+  <div class="stats_stat">
+    <h3 class="stats_count">{{ TotalDeaths }}</h3>
+    <p class="stats_type">Total Deaths</p>
+  </div>
+  <div class="stats_stat">
+    <h3 class="stats_count">{{ NewRecovered }}</h3>
+    <p class="stats_type">New Recovered</p>
+  </div>
+  <div class="stats_stat">
+    <h3 class="stats_count">{{ TotalRecovered }}</h3>
+    <p class="stats_type">Total Recovered</p>
+  </div>
+</div>
 
 <hr />
 
