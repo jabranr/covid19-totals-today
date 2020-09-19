@@ -29,6 +29,7 @@
     "eleventy": "^1.0.6",
     "husky": "^4.3.0",
     "mkdirp": "^1.0.4",
+    "normalize.css": "^8.0.1",
     "pretty-quick": "^3.0.2"
   },
   "dependencies": {},

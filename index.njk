@@ -1,43 +1,47 @@
 ---
 layout: base.njk
 ---
+<section class="container">
+  <section>
+    <h1>COVID-19 daily totals</h1>
+    <p class="lead">Quick summary about COVID-19 daily cases around the world</p>
+  </section>
 
-<h1>COVID-19 daily totals</h1>
-<p class="lead">Quick summary about COVID-19 daily cases around the world</p>
+  <section class="stats">
+    <article class="stats_stat">
+      <h3 class="stats_count">{{ NewConfirmed|number_format  }}</h3>
+      <p class="stats_type">New Confirmed</p>
+    </article>
+    <article class="stats_stat">
+      <h3 class="stats_count">{{ NewDeaths|number_format }}</h3>
+      <p class="stats_type">New Deaths</p>
+    </article>
+    <article class="stats_stat">
+      <h3 class="stats_count">{{ NewRecovered|number_format }}</h3>
+      <p class="stats_type">New Recovered</p>
+    </article>
+    <article class="stats_stat">
+      <h3 class="stats_count">{{ TotalConfirmed|number_format }}</h3>
+      <p class="stats_type">Total Confirmed</p>
+    </article>
+    <article class="stats_stat">
+      <h3 class="stats_count">{{ TotalDeaths|number_format }}</h3>
+      <p class="stats_type">Total Deaths</p>
+    </article>
+    <article class="stats_stat">
+      <h3 class="stats_count">{{ TotalRecovered|number_format }}</h3>
+      <p class="stats_type">Total Recovered</p>
+    </article>
+  </section>
 
-<div class="stats">
-  <div class="stats_stat">
-    <h3 class="stats_count">{{ NewConfirmed  }}</h3>
-    <p class="stats_type">New Confirmed</p>
-  </div>
-  <div class="stats_stat">
-    <h3 class="stats_count">{{ TotalConfirmed }}</h3>
-    <p class="stats_type">Total Confirmed</p>
-  </div>
-  <div class="stats_stat">
-    <h3 class="stats_count">{{ NewDeaths }}</h3>
-    <p class="stats_type">New Deaths</p>
-  </div>
-  <div class="stats_stat">
-    <h3 class="stats_count">{{ TotalDeaths }}</h3>
-    <p class="stats_type">Total Deaths</p>
-  </div>
-  <div class="stats_stat">
-    <h3 class="stats_count">{{ NewRecovered }}</h3>
-    <p class="stats_type">New Recovered</p>
-  </div>
-  <div class="stats_stat">
-    <h3 class="stats_count">{{ TotalRecovered }}</h3>
-    <p class="stats_type">Total Recovered</p>
-  </div>
-</div>
-
-<hr />
-
-<ul>
-{%- for item in countries -%}
-  <li data-title="{{item.Slug|slug}}">
-    <a href="/countries/{{ item.Slug | slug }}/">{{ item.Country }}</a>
-  <li>
-{%- endfor -%}
-</ul>
+  <section>
+    <h2 class="underlined">Daily stats for all countries</h2>
+    <ul class="countries-list">
+      {%- for item in countries -%}
+        <li data-title="{{item.Slug|slug}}">
+          <a href="/countries/{{ item.Slug | slug }}/">{{ item.Country }}</a>
+        <li>
+      {%- endfor -%}
+    </ul>
+  </section>
+</section>
