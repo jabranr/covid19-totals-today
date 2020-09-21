@@ -1,30 +1,31 @@
 ---
 layout: base.njk
 ---
+<section class="container-fluid bg-random">
+  <section class="container">
+    <section>
+      <h1 class="underlined">Past 24 hours</h1>
+      <p class="lead">Coronavirus (COVID-19) global statistics</p>
+    </section>
+
+    <section class="stats">
+      <article class="stats_stat">
+        <h3 class="stats_type">Cases</h3>
+        <div class="stats_count">{{ todayCases|number_format  }}</div>
+      </article>
+      <article class="stats_stat">
+        <h3 class="stats_type">Deaths</h3>
+        <div class="stats_count">{{ todayDeaths|number_format  }}</div>
+      </article>
+      <article class="stats_stat">
+        <h3 class="stats_type">Recovered</h3>
+        <div class="stats_count">{{ todayRecovered|number_format  }}</div>
+      </article>
+    </section>
+  </section>
+</section>
+
 <section class="container">
-  <section>
-    <h1 class="underlined">Past 24 hours</h1>
-    <p class="lead">Coronavirus (COVID-19) global statistics</p>
-  </section>
-
-  <section class="stats">
-    <article class="stats_stat">
-      <h3 class="stats_count">{{ todayCases|number_format  }}</h3>
-      <p class="stats_type">Cases</p>
-    </article>
-    <article class="stats_stat">
-      <h3 class="stats_count">{{ todayDeaths|number_format  }}</h3>
-      <p class="stats_type">Deaths</p>
-    </article>
-    <article class="stats_stat">
-      <h3 class="stats_count">{{ todayRecovered|number_format  }}</h3>
-      <p class="stats_type">Recovered</p>
-    </article>
-  </section>
-  <section class="last-updated">
-    <p>Last updated: {{ updated | date('DD MMM YYYY H:mma') }}</p>
-  </section>
-
   <section>
     <h2 class="lead">Coronavirus (COVID-19) cases from around the world</h2>
     <section class="continents">
@@ -41,5 +42,9 @@ layout: base.njk
         </article>
       {%- endfor -%}
     </section>
+  </section>
+
+  <section class="last-updated">
+    <p>Last updated: {{ updated | date('DD MMM YYYY H:mma') }}</p>
   </section>
 </section>

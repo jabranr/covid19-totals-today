@@ -1,5 +1,8 @@
 ---
 layout: base.njk
+renderData:
+    title: 'Coronavirus COVID-19 - Latest daily figures in {{country.country}}'
+    description: 'Summary of latest daily figures for Coronavirus COVID-19 in {{country.country}}'
 ---
 
 <section class="container">
@@ -7,41 +10,47 @@ layout: base.njk
     <h1>
       <img class="flag" src="{{country.countryInfo.flag}}" width="30px" lazy /> {{country.country}}
     </h1>
-    <p class="lead">Coronavirus (COVID-19) cases in {{country.country}}</p>
   </section>
+</section>
 
-  <section>
-    <h2 class="underlined">Past 24 hours</h2>
-    <section class="stats">
-      <article class="stats_stat">
-        <h3 class="stats_count">{{ country.todayCases|number_format  }}</h3>
-        <p class="stats_type">Cases</p>
-      </article>
-      <article class="stats_stat">
-        <h3 class="stats_count">{{ country.todayDeaths|number_format  }}</h3>
-        <p class="stats_type">Deaths</p>
-      </article>
-      <article class="stats_stat">
-        <h3 class="stats_count">{{ country.todayRecovered|number_format  }}</h3>
-        <p class="stats_type">Recovered</p>
-      </article>
+<section class="container-fluid bg-random">
+  <section class="container">
+    <p class="lead">Coronavirus (COVID-19) cases in {{country.country}}</p>
+    <section>
+      <h2 class="underlined">Past 24 hours</h2>
+      <section class="stats">
+        <article class="stats_stat">
+          <h3 class="stats_type">Cases</h3>
+          <div class="stats_count">{{ country.todayCases|number_format  }}</div>
+        </article>
+        <article class="stats_stat">
+          <h3 class="stats_type">Deaths</h3>
+          <div class="stats_count">{{ country.todayDeaths|number_format  }}</div>
+        </article>
+        <article class="stats_stat">
+          <h3 class="stats_type">Recovered</h3>
+          <div class="stats_count">{{ country.todayRecovered|number_format  }}</div>
+        </article>
+      </section>
     </section>
   </section>
+</section>
 
+<section class="container">
   <section>
     <h2 class="underlined">Totals</h2>
     <section class="stats">
       <article class="stats_stat">
-        <h3 class="stats_count">{{ country.cases|number_format  }}</h3>
-        <p class="stats_type">Cases</p>
+        <h3 class="stats_type">Cases</h3>
+        <div class="stats_count">{{ country.cases|number_format  }}</div>
       </article>
       <article class="stats_stat">
-        <h3 class="stats_count">{{ country.deaths|number_format  }}</h3>
-        <p class="stats_type">Deaths</p>
+        <h3 class="stats_type">Deaths</h3>
+        <div class="stats_count">{{ country.deaths|number_format  }}</div>
       </article>
       <article class="stats_stat">
-        <h3 class="stats_count">{{ country.recovered|number_format  }}</h3>
-        <p class="stats_type">Recovered</p>
+        <h3 class="stats_type">Recovered</h3>
+        <div class="stats_count">{{ country.recovered|number_format  }}</div>
       </article>
     </section>
   </section>

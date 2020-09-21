@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>{{title | default('Coronavirus COVID-19 daily totals')}}</title>
-    <meta name="description" content="{{description | default('Summary about number of new daily cases for Coronavirus COVID-19') }}" />
+    <title>{{ (renderData and renderData.title) or title|default('Coronavirus COVID-19 - Latest daily figures') }}</title>
+    <meta name="description" content="{{ (renderData and renderData.description) or description|default('Summary about number of new daily cases for Coronavirus COVID-19') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="msapplication-TileImage" content="{{ '/assets/images/apple-touch-icon-114x114.png' | url }}" />
