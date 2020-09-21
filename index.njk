@@ -3,8 +3,8 @@ layout: base.njk
 ---
 <section class="container">
   <section>
-    <h1>Past 24 hours</h1>
-    <p class="lead">Coronavirus (COVID-19) cases around the world</p>
+    <h1 class="underlined">Past 24 hours</h1>
+    <p class="lead">Coronavirus (COVID-19) global statistics</p>
   </section>
 
   <section class="stats">
@@ -22,11 +22,11 @@ layout: base.njk
     </article>
   </section>
   <section class="last-updated">
-    <p>Last updated: {{ updated | date('DD MMM YYYY H:ma') }}</p>
+    <p>Last updated: {{ updated | date('DD MMM YYYY H:mma') }}</p>
   </section>
 
   <section>
-    <h2 class="lead">COVID-19 daily stats update for all the continents and countries</h2>
+    <h2 class="lead">Coronavirus (COVID-19) cases from around the world</h2>
     <section class="continents">
       {%- for item in continents -%}
         <article class="continents_continent">
