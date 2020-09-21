@@ -1,5 +1,10 @@
+const _ = require('lodash');
 const fs = require('fs');
 const util = require('util');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+
+dayjs.extend(utc);
 
 module.exports = function (eleventyConfig) {
   // copy static assets
@@ -17,6 +22,16 @@ module.exports = function (eleventyConfig) {
   // format numbers
   eleventyConfig.addFilter('number_format', function (value) {
     return Number(value).toLocaleString();
+  });
+
+  // format date time
+  eleventyConfig.addFilter('date', function (value, format = 'DD MMM YYYY') {
+    return dayjs.utc(value).format(format);
+  });
+
+  // lodash groupBy
+  eleventyConfig.addFilter('groupBy', function (collection, needle) {
+    return _.groupBy(collection, needle);
   });
 
   // add 404

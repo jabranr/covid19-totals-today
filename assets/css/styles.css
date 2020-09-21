@@ -112,6 +112,7 @@ hr {
   display: grid;
   grid-area: stats-count;
   font-size: 2rem;
+  font-weight: 800;
 }
 
 @media (min-width: 600px) {
@@ -159,25 +160,56 @@ hr {
   }
 }
 
-.countries-list {
+.continents_continent + .continents_continent {
+  margin-top: 3rem;
+}
+
+.countries {
   display: inline-grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
+  grid-column-gap: 1.35rem;
+  font-size: 14px;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.countries-list li:empty {
+.countries li:empty {
   display: none;
 }
 
 @media (min-width: 600px) {
-  .countries-list {
+  .countries {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-.countries-list li {
-  /* border: 1px solid var(--cdt-dark-gray); */
+.countries li {
+  align-content: start;
+}
+
+.countries_country {
+  display: block;
+  color: var(--cdt-black);
+  padding: 0.5rem;
+}
+
+.last-updated {
+  font-size: small;
+  color: var(--cdt-dark-gray);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  .last-updated {
+    /* border-bottom: 1px solid var(--cdt-gray); */
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+
+.flag {
+  height: 1.5rem;
+  width: auto;
 }

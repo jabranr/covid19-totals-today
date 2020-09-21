@@ -3,45 +3,43 @@ layout: base.njk
 ---
 <section class="container">
   <section>
-    <h1>COVID-19 daily totals</h1>
-    <p class="lead">Quick summary about COVID-19 daily cases around the world</p>
+    <h1>Past 24 hours</h1>
+    <p class="lead">Coronavirus (COVID-19) cases around the world</p>
   </section>
 
   <section class="stats">
     <article class="stats_stat">
-      <h3 class="stats_count">{{ NewConfirmed|number_format  }}</h3>
-      <p class="stats_type">New Confirmed</p>
+      <h3 class="stats_count">{{ todayCases|number_format  }}</h3>
+      <p class="stats_type">Cases</p>
     </article>
     <article class="stats_stat">
-      <h3 class="stats_count">{{ NewDeaths|number_format }}</h3>
-      <p class="stats_type">New Deaths</p>
+      <h3 class="stats_count">{{ todayDeaths|number_format  }}</h3>
+      <p class="stats_type">Deaths</p>
     </article>
     <article class="stats_stat">
-      <h3 class="stats_count">{{ NewRecovered|number_format }}</h3>
-      <p class="stats_type">New Recovered</p>
+      <h3 class="stats_count">{{ todayRecovered|number_format  }}</h3>
+      <p class="stats_type">Recovered</p>
     </article>
-    <article class="stats_stat">
-      <h3 class="stats_count">{{ TotalConfirmed|number_format }}</h3>
-      <p class="stats_type">Total Confirmed</p>
-    </article>
-    <article class="stats_stat">
-      <h3 class="stats_count">{{ TotalDeaths|number_format }}</h3>
-      <p class="stats_type">Total Deaths</p>
-    </article>
-    <article class="stats_stat">
-      <h3 class="stats_count">{{ TotalRecovered|number_format }}</h3>
-      <p class="stats_type">Total Recovered</p>
-    </article>
+  </section>
+  <section class="last-updated">
+    <p>Last updated: {{ updated | date('DD MMM YYYY H:ma') }}</p>
   </section>
 
   <section>
-    <h2 class="underlined">Daily stats for all countries</h2>
-    <ul class="countries-list">
-      {%- for item in countries -%}
-        <li data-title="{{item.Slug|slug}}">
-          <a href="/countries/{{ item.Slug | slug }}/">{{ item.Country }}</a>
-        <li>
+    <h2 class="lead">COVID-19 daily stats update for all the continents and countries</h2>
+    <section class="continents">
+      {%- for item in continents -%}
+        <article class="continents_continent">
+          <h3 class="lead underlined">{{ item.continent | safe }}</h3>
+          <ul class="countries">
+            {%- for countryName in item.countries -%}
+              <li>
+                <a class="countries_country" href="/countries/{{ countryName | slug }}/">{{ countryName }}</a>
+              <li>
+            {%- endfor -%}
+          </ul>
+        </article>
       {%- endfor -%}
-    </ul>
+    </section>
   </section>
 </section>

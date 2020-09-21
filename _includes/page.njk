@@ -1,13 +1,51 @@
 ---
 layout: base.njk
-title: "COVID-19 daily totals for {{country.Country}}"
 ---
 
-<h1>{{country.Country}} COVID-19 daily totals</h1>
+<section class="container">
+  <section>
+    <h1>
+      <img class="flag" src="{{country.countryInfo.flag}}" width="30px" lazy /> {{country.country}}
+    </h1>
+    <p class="lead">Coronavirus (COVID-19) cases in {{country.country}}</p>
+  </section>
 
-<p>NewConfirmed: {{ country.NewConfirmed }}</p>
-<p>TotalConfirmed: {{ country.TotalConfirmed }}</p>
-<p>NewDeaths: {{ country.NewDeaths }}</p>
-<p>TotalDeaths: {{ country.TotalDeaths }}</p>
-<p>NewRecovered: {{ country.NewRecovered }}</p>
-<p>TotalRecovered: {{ country.TotalRecovered }}</p>
+  <section>
+    <h2 class="underlined">Past 24 hours</h2>
+    <section class="stats">
+      <article class="stats_stat">
+        <h3 class="stats_count">{{ country.todayCases|number_format  }}</h3>
+        <p class="stats_type">Cases</p>
+      </article>
+      <article class="stats_stat">
+        <h3 class="stats_count">{{ country.todayDeaths|number_format  }}</h3>
+        <p class="stats_type">Deaths</p>
+      </article>
+      <article class="stats_stat">
+        <h3 class="stats_count">{{ country.todayRecovered|number_format  }}</h3>
+        <p class="stats_type">Recovered</p>
+      </article>
+    </section>
+  </section>
+
+  <section>
+    <h2 class="underlined">Totals</h2>
+    <section class="stats">
+      <article class="stats_stat">
+        <h3 class="stats_count">{{ country.cases|number_format  }}</h3>
+        <p class="stats_type">Cases</p>
+      </article>
+      <article class="stats_stat">
+        <h3 class="stats_count">{{ country.deaths|number_format  }}</h3>
+        <p class="stats_type">Deaths</p>
+      </article>
+      <article class="stats_stat">
+        <h3 class="stats_count">{{ country.recovered|number_format  }}</h3>
+        <p class="stats_type">Recovered</p>
+      </article>
+    </section>
+  </section>
+  <section class="last-updated">
+    <p>Last updated: {{ country.updated | date('DD MMM YYYY H:ma') }}</p>
+  </section>
+</section>

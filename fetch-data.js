@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
+const _ = require('lodash');
 const axios = require('axios');
 
 const callback = (err) => {
@@ -9,16 +10,26 @@ const callback = (err) => {
   }
 };
 
-async function fetchData() {
+(async () => {
   try {
-    const response = await axios.get(`https://api.covid19api.com/summary`);
-    const { Global, Countries, Date } = response.data;
+    const response = await axios.get(`https://disease.sh/v3/covid-19/all?yesterday=true`);
+    const continents = await axios.get(`https://disease.sh/v3/covid-19/continents?yesterday=true`);
+    const countries = await axios.get(`https://disease.sh/v3/covid-19/countries?yesterday=true`);
 
-    fs.writeFile(path.resolve(__dirname, './index.json'), JSON.stringify(Global), callback);
-    fs.writeFile(path.resolve(__dirname, './_data/countries.json'), JSON.stringify(Countries), callback);
+    fs.writeFile(path.resolve(__dirname, './index.json'), JSON.stringify(response.data), callback);
+
+    fs.writeFile(
+      path.resolve(__dirname, './_data/continents.json'),
+      JSON.stringify(_.sortBy(continents.data, 'continent')),
+      callback
+    );
+
+    fs.writeFile(
+      path.resolve(__dirname, './_data/countries.json'),
+      JSON.stringify(_.sortBy(countries.data, 'country')),
+      callback
+    );
   } catch (err) {
     console.log(err);
   }
-}
-
-fetchData();
+})();
