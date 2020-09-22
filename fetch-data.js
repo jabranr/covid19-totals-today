@@ -26,7 +26,7 @@ const callback = (err) => {
 
     fs.writeFile(
       path.resolve(__dirname, './_data/countries.json'),
-      JSON.stringify(_.sortBy(countries.data, 'country')),
+      JSON.stringify(_.sortBy(countries.data), 'country'),
       callback
     );
   } catch (err) {
