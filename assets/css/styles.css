@@ -5,6 +5,7 @@
   --cdt-dark-gray: #666;
   --cdt-light-gray: #eee;
   --cdt-gray: #ddd;
+  --cdt-blue: #00bcd4;
   --cdt-random: hsla(170, 50%, 45%, 0.1);
 }
 
@@ -47,6 +48,7 @@ hr {
 .main {
   width: 100%;
   margin: 0 auto;
+  min-height: 85vh;
 }
 
 .container {
@@ -203,4 +205,49 @@ hr {
 .flag {
   height: 1.5rem;
   width: auto;
+}
+.logo {
+  margin: 0;
+  text-decoration: none;
+  color: var(--cdt-black);
+}
+
+.h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.header_inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+}
+
+.footer {
+  background-color: var(--cdt-black);
+  color: var(--cdt-gray);
+  font-size: 14px;
+}
+
+.footer a {
+  color: var(--cdt-blue);
+}
+
+.footer a:hover,
+.footer a:focus,
+.footer a:active {
+  text-decoration: none;
+}
+
+.colophone a:not(:last-child)::after {
+  content: '\2022';
+  color: var(--cdt-dark-gray);
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding-right: 0.35rem;
+}
+
+.heart {
+  color: #c30;
 }

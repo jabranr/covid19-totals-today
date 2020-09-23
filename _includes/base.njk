@@ -18,8 +18,29 @@
   </head>
   <body>
     <div class="wrapper">
+      <header class="header container-fluid">
+        <section class="container header_inner">
+          {% if page.url != '/' %}
+            <a class="h1 logo" href="/">COVID-19 daily totals</a>
+          {% else %}
+            <h1 class="logo">COVID-19 daily totals</h1>
+          {% endif %}
+        </section>
+      </header>
       <main class="main">{{ content | safe }}</main>
+      <footer class="footer container-fluid">
+        <section class="container">
+          <div>Data sourced from <a target="_blank" rel="noopener" href="https://www.worldometers.info/">Worldometers</a> via <a href="https://disease.sh" target="_blank" rel="noopener">disease.sh</a></div>
+          <div class="colophone">
+            <a href="{{ '/terms' | url }}">Terms of service</a>
+            <a href="{{ '/privacy-policy' | url }}">Privacy policy</a>
+            <a target="_blank" rel="noopener" href="https://www.twitter.com/jabranr">Twitter</a>
+            <a target="_blank" rel="noopener" href="https://github.com/jabranr/covid19-totals-today">GitHub</a>
+          </div>
+          <p><span class="heart">&hearts;</span> Made for humanity</p>
+        </section>
+      </footer>
     </div>
-    <script src="/assets/js/main.js"></script>
+    <script src="{{ '/assets/js/main.js' | url }}"></script>
   </body>
 </html>

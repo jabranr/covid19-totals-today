@@ -6,16 +6,15 @@ renderData:
 ---
 
 <section class="container">
-  <section>
-    <h1>
-      <img class="flag" src="{{country.countryInfo.flag}}" width="30px" lazy /> {{country.country}}
-    </h1>
-  </section>
+
 </section>
 
 <section class="container-fluid bg-random">
   <section class="container">
-    <p class="lead">Coronavirus (COVID-19) cases in {{country.country}}</p>
+    <section>
+      <img class="flag" src="{{country.countryInfo.flag}}" width="30px" lazy />
+    </section>
+    <h1 class="lead">Coronavirus (COVID-19) cases in {{country.country}}</h1>
     <section>
       <h2 class="underlined">Past 24 hours</h2>
       <section class="stats">
