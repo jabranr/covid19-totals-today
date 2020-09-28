@@ -161,9 +161,8 @@ hr {
 }
 
 .countries {
-  display: inline-grid;
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 1.35rem;
   font-size: 14px;
   list-style-type: none;
   margin: 0;
@@ -176,18 +175,25 @@ hr {
 
 @media (min-width: 600px) {
   .countries {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .countries li {
   align-content: start;
+  border-bottom: 1px solid var(--cdt-light-gray);
 }
 
 .countries_country {
   display: block;
   color: var(--cdt-black);
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
+}
+
+.countries_country:hover,
+.countries_country:active {
+  text-decoration: none;
+  color: var(--cdt-orange);
 }
 
 .last-updated {
