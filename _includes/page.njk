@@ -1,12 +1,44 @@
 ---
 layout: base.njk
 renderData:
-    title: 'Coronavirus COVID-19 - Latest daily figures in {{country.country}}'
-    description: 'Summary of latest daily figures for Coronavirus COVID-19 in {{country.country}}'
+  title: 'Coronavirus COVID-19 - Latest daily figures in {{country.country}}'
+  description: 'Summary of latest daily figures for Coronavirus COVID-19 in {{country.country}}'
 ---
 
-<section class="container">
-
+<section class="container breadcrumbs">
+  <a href="/">Home</a> &rsaquo; {{ country.continent | safe }} &rsaquo; {{ country.country | safe }}
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "{{ '/' | absoluteUrl }}",
+        "name": "Home"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "{{ '/continents/' | absoluteUrl }}{{ country.continent | slug  }}/",
+        "name": "{{ country.continent | safe}}"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "{{ '/countries/' | absoluteUrl }}{{ country.country | slug }}/",
+        "name": "{{ country.country | safe}}"
+      }
+    }
+  ]
+}
+  </script>
 </section>
 
 <section class="container-fluid bg-random">

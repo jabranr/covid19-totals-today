@@ -257,3 +257,18 @@ hr {
 .heart {
   color: #c30;
 }
+
+.breadcrumbs {
+  font-size: small;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.breadcrumbs a {
+  color: var(--cdt-black);
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs a:active {
+  color: var(--cdt-orange);
+}

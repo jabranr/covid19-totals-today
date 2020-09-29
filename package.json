@@ -4,11 +4,10 @@
   "version": "1.0.0",
   "scripts": {
     "data:prepare": "node fetch-data.js",
-    "data:clean": "rm -rf _site/ _data/* index.json",
-    "prestart": "npm run data:clean && npm run data:prepare",
+    "data:clean": "rm -rf _site/ _data/*.json index.json",
     "prebuild": "npm run data:clean && npm run data:prepare",
-    "start": "eleventy --serve",
-    "build": "eleventy"
+    "start": "NODE_ENV=development eleventy --serve",
+    "build": "NODE_ENV=production eleventy"
   },
   "keywords": [
     "COVID",
@@ -34,7 +33,10 @@
     "normalize.css": "^8.0.1",
     "pretty-quick": "^3.0.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
