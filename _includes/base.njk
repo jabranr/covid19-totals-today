@@ -10,6 +10,7 @@
     <meta name="theme-color" content="#f55555" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.google-analytics.com" />
+    <link rel="preconnect" href="https://disease.sh" />
     <link rel="manifest" href="{{ '/manifest.json' | absoluteUrl }}" />
     <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | absoluteUrl }}" />
     <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon-114x114.png' | absoluteUrl }}" />
@@ -30,13 +31,15 @@
       <main class="main">{{ content | safe }}</main>
       <footer class="footer container-fluid">
         <section class="container">
+          <p>&copy; 2020 &ndash; present</p>
           <div>Data from <a target="_blank" rel="noopener" href="https://www.worldometers.info/">Worldometers</a> via <a href="https://disease.sh" target="_blank" rel="noopener">disease.sh</a></div>
-          <div class="colophone">
+          <div class="colophone bullets">
             <a href="{{ '/terms' | url }}">Terms of service</a>
             <a href="{{ '/privacy-policy' | url }}">Privacy policy</a>
             <a target="_blank" rel="noopener" href="https://www.twitter.com/jabranr">Twitter</a>
             <a target="_blank" rel="noopener" href="https://github.com/jabranr/covid19-totals-today">GitHub</a>
           </div>
+          <p>MIT License unless specified otherwise</p>
           <p><span class="heart">&hearts;</span> Made for humanity</p>
         </section>
       </footer>

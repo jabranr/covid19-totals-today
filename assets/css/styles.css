@@ -124,6 +124,7 @@ hr {
 .stats_count {
   display: grid;
   font-size: 2.5rem;
+  font-weight: 800;
 }
 
 @media (min-width: 600px) {
@@ -234,6 +235,7 @@ hr {
   background-color: var(--cdt-black);
   color: var(--cdt-gray);
   font-size: 14px;
+  line-height: 1.75;
 }
 
 .footer a {
@@ -246,7 +248,7 @@ hr {
   text-decoration: none;
 }
 
-.colophone a:not(:last-child)::after {
+.bullets > *:not(:last-child)::after {
   content: '\2022';
   color: var(--cdt-dark-gray);
   display: inline-block;
