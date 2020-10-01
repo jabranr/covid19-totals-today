@@ -86,7 +86,7 @@ hr {
   padding: 0;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 900px) {
   .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -107,7 +107,7 @@ hr {
   border-top: 2px solid var(--cdt-random);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 900px) {
   .stats_stat {
     display: grid;
     grid-template-columns: none;

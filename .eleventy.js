@@ -4,9 +4,10 @@ const path = require('path');
 const util = require('util');
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
-const { exit } = require('process');
+const relativeTime = require('dayjs/plugin/relativeTime');
 
 dayjs.extend(utc);
+dayjs.extend(relativeTime);
 
 const dotEnvPath = path.resolve(__dirname, './.env');
 const dotenvFiles = [`${dotEnvPath}.${process.env.NODE_ENV}`, dotEnvPath].filter(Boolean);
@@ -41,6 +42,16 @@ module.exports = function (eleventyConfig) {
 
   // format date time
   eleventyConfig.addFilter('date', function (value, format = 'DD MMM YYYY') {
+    if (format === 'relative') {
+      return dayjs.utc(value).fromNow();
+    }
+
+    const [duration, type] = format.split(' ');
+
+    if (Boolean(type) && Boolean(duration)) {
+      return dayjs.utc(value).add(Number(duration), `${type}`);
+    }
+
     return dayjs.utc(value).format(format);
   });
 

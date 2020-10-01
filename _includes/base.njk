@@ -18,19 +18,20 @@
     <link href="{{ '/assets/css/styles.css' | absoluteUrl }}" rel="stylesheet" />
   </head>
   <body>
+    {% block schema %}{% endblock schema %}
     <div class="wrapper">
       <header class="header container-fluid">
         <section class="container header_inner">
           {% if page.url != '/' %}
-            <a class="h1 logo" href="/">COVID-19 daily totals</a>
+            <a class="h1 logo" href="/">Covid totals, Today</a>
           {% else %}
-            <h1 class="logo">COVID-19 daily totals</h1>
+            <h1 class="logo">Covid totals, Today</h1>
           {% endif %}
         </section>
       </header>
       <main class="main">{{ content | safe }}</main>
       <footer class="footer container-fluid">
-        <section class="container">
+        <div class="container">
           <p>&copy; 2020 &ndash; present</p>
           <div>Data from <a target="_blank" rel="noopener" href="https://www.worldometers.info/">Worldometers</a> via <a href="https://disease.sh" target="_blank" rel="noopener">disease.sh</a></div>
           <div class="colophone bullets">
@@ -41,7 +42,7 @@
           </div>
           <p>MIT License unless specified otherwise</p>
           <p><span class="heart">&hearts;</span> Made for humanity</p>
-        </section>
+        </div>
       </footer>
     </div>
     <script src="{{ '/assets/js/main.js' | absoluteUrl }}"></script>

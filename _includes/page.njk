@@ -1,44 +1,87 @@
 ---
 layout: base.njk
 renderData:
-  title: 'Coronavirus COVID-19 - Latest daily figures in {{country.country}}'
-  description: 'Summary of latest daily figures for Coronavirus COVID-19 in {{country.country}}'
+  title: 'Latest Coronavirus COVID-19 figures for {{country.country}}'
+  description: 'In past 24 hours, {{country.country}}, {{country.continent}} had {{ country.todayCases|number_format }} new cases, {{ country.todayDeaths|number_format }} deaths and {{ country.todayRecovered|number_format }} recoveries.'
 ---
-
-<section class="container breadcrumbs">
-  <a href="/">Home</a> &rsaquo; {{ country.continent | safe }} &rsaquo; {{ country.country | safe }}
-  <script type="application/ld+json">
-    {
+{% block schema %}
+<script type="application/ld+json">
+{
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@id": "{{ '/' | absoluteUrl }}",
-        "name": "Home"
-      }
+      "@type": "BreadcrumbList",
+      "name": "Breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@id": "{{ '/' | absoluteUrl }}",
+            "name": "Home"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@id": "{{ '/continents/' | absoluteUrl }}{{ country.continent | slug  }}/",
+            "name": "{{ country.continent | safe}}"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@id": "{{ '/countries/' | absoluteUrl }}{{ country.country | slug }}/",
+            "name": "{{ country.country | safe}}"
+          }
+        }
+      ]
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@id": "{{ '/continents/' | absoluteUrl }}{{ country.continent | slug  }}/",
-        "name": "{{ country.continent | safe}}"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@id": "{{ '/countries/' | absoluteUrl }}{{ country.country | slug }}/",
-        "name": "{{ country.country | safe}}"
+      "@type": "SpecialAnnouncement",
+      "name": "Latest Coronavirus COVID-19 figures for {{country.country}}",
+      "datePosted": "{{ country.updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
+      "expires": "{{ country.updated | date('6 hour') | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
+      "text": "In past 24 hours, {{country.country}}, {{country.continent}} had {{ country.todayCases|number_format }} new cases, {{ country.todayDeaths|number_format }} deaths and {{ country.todayRecovered|number_format }} recoveries.",
+      "url": "{{ '/countries/' | absoluteUrl }}{{ country.country | slug }}/",
+      "category": "https://www.wikidata.org/wiki/Q81068910",
+      "spatialCoverage": {
+        "@type": "Country",
+        "name": "{{country.country}}"
+      },
+      "diseaseSpreadStatistics": {
+        "@type": "Dataset",
+        "name": "Latest Coronavirus COVID-19 figures for {{country.country}}",
+        "description": "In past 24 hours, {{country.country}}, {{country.continent}} had {{ country.todayCases|number_format }} new cases, {{ country.todayDeaths|number_format }} deaths and {{ country.todayRecovered|number_format }} recoveries.",
+        "distribution": {
+          "@type": "DataDownload",
+          "contentUrl": "https://disease.sh/v3/covid-19/countries/{{country.country}}",
+          "encodingFormat": "application/json"
+        },
+        "license": "https://github.com/disease-sh/API/blob/master/LICENSE",
+        "creator": [
+          {
+            "@type": "Organization",
+            "name": "Worldometers",
+            "url": "https://www.worldometers.info/"
+          },
+          {
+            "@type": "Organization",
+            "name": "CSSE at JHU",
+            "url": "https://www.arcgis.com/apps/opsdashboard/index.html?fbclid=IwAR0fmrWrAlO4sezEHeT4zY23agRARGdC85uypXcpUfRI3o-LlPDJW8i1ovU#/bda7594740fd40299423467b48e9ecf6"
+          }
+        ]
       }
     }
   ]
 }
-  </script>
+</script>
+{% endblock %}
+
+<section class="container breadcrumbs">
+  <a href="/">Home</a> &rsaquo; {{ country.continent | safe }} &rsaquo; {{ country.country | safe }}
 </section>
 
 <section class="container-fluid bg-random">
@@ -52,15 +95,15 @@ renderData:
       <section class="stats">
         <article class="stats_stat">
           <h3 class="stats_type">Cases</h3>
-          <div class="stats_count">{{ country.todayCases|number_format  }}</div>
+          <div class="stats_count">{{ country.todayCases|number_format }}</div>
         </article>
         <article class="stats_stat">
           <h3 class="stats_type">Deaths</h3>
-          <div class="stats_count">{{ country.todayDeaths|number_format  }}</div>
+          <div class="stats_count">{{ country.todayDeaths|number_format }}</div>
         </article>
         <article class="stats_stat">
           <h3 class="stats_type">Recovered</h3>
-          <div class="stats_count">{{ country.todayRecovered|number_format  }}</div>
+          <div class="stats_count">{{ country.todayRecovered|number_format }}</div>
         </article>
       </section>
     </section>
@@ -73,19 +116,21 @@ renderData:
     <section class="stats">
       <article class="stats_stat">
         <h3 class="stats_type">Cases</h3>
-        <div class="stats_count">{{ country.cases|number_format  }}</div>
+        <div class="stats_count">{{ country.cases|number_format }}</div>
       </article>
       <article class="stats_stat">
         <h3 class="stats_type">Deaths</h3>
-        <div class="stats_count">{{ country.deaths|number_format  }}</div>
+        <div class="stats_count">{{ country.deaths|number_format }}</div>
       </article>
       <article class="stats_stat">
         <h3 class="stats_type">Recovered</h3>
-        <div class="stats_count">{{ country.recovered|number_format  }}</div>
+        <div class="stats_count">{{ country.recovered|number_format }}</div>
       </article>
     </section>
   </section>
   <section class="last-updated">
-    <p>Last updated: {{ country.updated | date('DD MMM YYYY H:ma') }}</p>
+    <p>
+      <time datetime="{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}">Last updated: {{ country.updated | date('relative') }}</time>
+    </p>
   </section>
 </section>
