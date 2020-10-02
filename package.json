@@ -1,13 +1,14 @@
 {
   "name": "covid-daily-totals",
-  "description": "Summary about number of new daily cases for Coronavirus COVID-19",
+  "description": "Latest global figures about Coronavirus COVID-19",
   "version": "1.0.0",
   "scripts": {
     "data:prepare": "node fetch-data.js",
     "data:clean": "rm -rf _site/ _data/*.json index.json",
     "prebuild": "npm run data:clean && npm run data:prepare",
     "start": "NODE_ENV=development eleventy --serve",
-    "build": "NODE_ENV=production eleventy"
+    "build": "NODE_ENV=production eleventy",
+    "cf:cache:purge": "node ./purge-cf-cache.js"
   },
   "keywords": [
     "COVID",
@@ -25,19 +26,18 @@
   "devDependencies": {
     "@jabranr-lab/prettier": "^1.2.0",
     "axios": "^0.20.0",
+    "cloudflare": "^2.7.0",
     "dayjs": "^1.9.1",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
     "eleventy": "^1.0.6",
     "gh-pages": "^3.1.0",
     "husky": "^4.3.0",
     "lodash": "^4.17.20",
-    "mkdirp": "^1.0.4",
     "normalize.css": "^8.0.1",
     "pretty-quick": "^3.0.2"
   },
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "dotenv-expand": "^5.1.0"
-  },
+  "dependencies": {},
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
