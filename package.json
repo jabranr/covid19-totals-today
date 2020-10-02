@@ -23,10 +23,11 @@
   "prettier": "@jabranr-lab/prettier",
   "license": "MIT",
   "devDependencies": {
-    "@jabranr-lab/prettier": "^1.1.0",
+    "@jabranr-lab/prettier": "^1.2.0",
     "axios": "^0.20.0",
-    "dayjs": "^1.8.36",
+    "dayjs": "^1.9.1",
     "eleventy": "^1.0.6",
+    "gh-pages": "^3.1.0",
     "husky": "^4.3.0",
     "lodash": "^4.17.20",
     "mkdirp": "^1.0.4",
