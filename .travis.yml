@@ -1,0 +1,30 @@
+language: node_js
+
+node_js:
+  - 'lts/*'
+
+install:
+  - npm install
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
+before_deploy:
+  - npm run build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  keep_history: true
+  local_dir: build
+  project_name: covidtotals
+  name: Jabran Rafique
+  email: hello@jabran.me
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
+
+after_deploy:
+  - npm run cf:cache:purge
