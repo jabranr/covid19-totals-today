@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#f55555" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.google-analytics.com" />
-    <link rel="preconnect" href="https://disease.sh" />
+    <link rel="preconnect" href="{{ config.env.API_HOSTNAME }}" />
     <link rel="manifest" href="{{ '/manifest.json' | absoluteUrl }}" />
     <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | absoluteUrl }}" />
     <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon-114x114.png' | absoluteUrl }}" />
@@ -22,12 +22,12 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NCWR6VN');</script>
+    })(window,document,'script','dataLayer','{{ config.env.GTM_ID }}');</script>
     <!-- End Google Tag Manager -->
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCWR6VN"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config.env.GTM_ID }}"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     {% block schema %}{% endblock schema %}
@@ -35,9 +35,9 @@
       <header class="header container-fluid">
         <section class="container header_inner">
           {% if page.url != '/' %}
-            <a class="h1 logo" href="/">Covid totals, Today</a>
+            <a class="h1 logo" href="/">Covid totals, today</a>
           {% else %}
-            <h1 class="logo">Covid totals, Today</h1>
+            <h1 class="logo">Covid totals, today</h1>
           {% endif %}
         </section>
       </header>

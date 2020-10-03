@@ -81,7 +81,7 @@ renderData:
 {% endblock %}
 
 <section class="container breadcrumbs">
-  <a href="/">Home</a> &rsaquo; {{ country.continent | safe }} &rsaquo; {{ country.country | safe }}
+  <a href="/">Home</a> &rsaquo; <a href="{{ '/continents/' | absoluteUrl }}{{ country.continent | slug  }}/">{{ country.continent | safe }}</a> &rsaquo; {{ country.country | safe }}
 </section>
 
 <section class="container-fluid bg-random">
@@ -113,7 +113,7 @@ renderData:
 <section class="container">
   <section>
     <h2 class="underlined">Totals</h2>
-    <section class="stats">
+    <section class="stats states--totals">
       <article class="stats_stat">
         <h3 class="stats_type">Cases</h3>
         <div class="stats_count">{{ country.cases|number_format }}</div>

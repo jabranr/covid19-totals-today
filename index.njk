@@ -77,7 +77,8 @@ layout: base.njk
         <ul class="countries">
           {%- for countryName in item.countries -%}
             <li itemscope itemtype="http://schema.org/Country">
-              <a itemprop="url" class="countries_country" href="/countries/{{ countryName | slug }}/">
+              <link itemprop="url" href="/countries/{{ countryName | slug }}/" />
+              <a class="countries_country" href="/countries/{{ countryName | slug }}/">
                 <span itemprop="name">{{ countryName }}<span>
               </a>
             <li>

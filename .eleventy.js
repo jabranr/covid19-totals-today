@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
@@ -9,10 +8,9 @@ const relativeTime = require('dayjs/plugin/relativeTime');
 dayjs.extend(utc);
 dayjs.extend(relativeTime);
 
-const dotEnvPath = path.resolve(__dirname, './.env');
-const dotenvFiles = [`${dotEnvPath}.${process.env.NODE_ENV}`, dotEnvPath].filter(Boolean);
+if (process.env.NODE_ENV !== 'production') {
+  const dotenvFile = path.resolve(__dirname, `./.env.${process.env.NODE_ENV}`);
 
-dotenvFiles.forEach((dotenvFile) => {
   if (fs.existsSync(dotenvFile)) {
     require('dotenv-expand')(
       require('dotenv').config({
@@ -20,7 +18,9 @@ dotenvFiles.forEach((dotenvFile) => {
       })
     );
   }
-});
+}
+
+const config = require('./_data/config');
 
 module.exports = function (eleventyConfig) {
   // copy static assets
@@ -58,11 +58,11 @@ module.exports = function (eleventyConfig) {
   // format date time
   eleventyConfig.addFilter('absoluteUrl', function (value) {
     if (!Boolean(value) || value === '/') {
-      return process.env.APP_HOSTNAME;
+      return config.env.APP_HOSTNAME;
     }
 
     const regulateSlash = value.startsWith('/') ? value : `'/'${value}`;
-    return `${process.env.APP_HOSTNAME}${regulateSlash}`;
+    return `${config.env.APP_HOSTNAME}${regulateSlash}`;
   });
 
   // add 404

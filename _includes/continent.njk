@@ -1,0 +1,144 @@
+---
+layout: base.njk
+renderData:
+  title: 'Latest Coronavirus COVID-19 figures for {{continent.continent}}'
+  description: 'In past 24 hours, {{continent.continent}} had {{ continent.todayCases|number_format }} new cases, {{ continent.todayDeaths|number_format }} deaths and {{ continent.todayRecovered|number_format }} recoveries.'
+---
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "name": "Breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@id": "{{ '/' | absoluteUrl }}",
+            "name": "Home"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@id": "{{ '/continents/' | absoluteUrl }}{{ continent.continent | slug  }}/",
+            "name": "{{ continent.continent | safe}}"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "SpecialAnnouncement",
+      "name": "Latest Coronavirus COVID-19 figures for {{continent.continent}}",
+      "datePosted": "{{ continent.updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
+      "expires": "{{ continent.updated | date('6 hour') | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
+      "text": "In past 24 hours, {{continent.continent}} had {{ continent.todayCases|number_format }} new cases, {{ continent.todayDeaths|number_format }} deaths and {{ continent.todayRecovered|number_format }} recoveries.",
+      "url": "{{ '/countries/' | absoluteUrl }}{{ continent.continent | slug }}/",
+      "category": "https://www.wikidata.org/wiki/Q81068910",
+      "spatialCoverage": {
+        "@type": "Country",
+        "name": "{{continent.continent}}"
+      },
+      "diseaseSpreadStatistics": {
+        "@type": "Dataset",
+        "name": "Latest Coronavirus COVID-19 figures for {{continent.continent}}",
+        "description": "In past 24 hours, {{continent.continent}} had {{ continent.todayCases|number_format }} new cases, {{ continent.todayDeaths|number_format }} deaths and {{ continent.todayRecovered|number_format }} recoveries.",
+        "distribution": {
+          "@type": "DataDownload",
+          "contentUrl": "https://disease.sh/v3/covid-19/countries/{{continent.continent}}",
+          "encodingFormat": "application/json"
+        },
+        "license": "https://github.com/disease-sh/API/blob/master/LICENSE",
+        "creator": [
+          {
+            "@type": "Organization",
+            "name": "Worldometers",
+            "url": "https://www.worldometers.info/"
+          },
+          {
+            "@type": "Organization",
+            "name": "CSSE at JHU",
+            "url": "https://www.arcgis.com/apps/opsdashboard/index.html?fbclid=IwAR0fmrWrAlO4sezEHeT4zY23agRARGdC85uypXcpUfRI3o-LlPDJW8i1ovU#/bda7594740fd40299423467b48e9ecf6"
+          }
+        ]
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+<section class="container breadcrumbs">
+  <a href="/">Home</a> &rsaquo; <a href="{{ '/continents/' | absoluteUrl }}{{ continent.continent | slug  }}/">{{ continent.continent | safe }}</a>
+</section>
+
+<section class="container-fluid bg-random">
+  <section class="container">
+    <section>
+      <img class="flag" src="{{continent.continentInfo.flag}}" width="30px" lazy />
+    </section>
+    <h1 class="lead">Coronavirus (COVID-19) cases in {{continent.continent}}</h1>
+    <section>
+      <h2 class="underlined">Past 24 hours</h2>
+      <section class="stats">
+        <article class="stats_stat">
+          <h3 class="stats_type">Cases</h3>
+          <div class="stats_count">{{ continent.todayCases|number_format }}</div>
+        </article>
+        <article class="stats_stat">
+          <h3 class="stats_type">Deaths</h3>
+          <div class="stats_count">{{ continent.todayDeaths|number_format }}</div>
+        </article>
+        <article class="stats_stat">
+          <h3 class="stats_type">Recovered</h3>
+          <div class="stats_count">{{ continent.todayRecovered|number_format }}</div>
+        </article>
+      </section>
+    </section>
+  </section>
+</section>
+
+<section class="container">
+  <section>
+    <h2 class="underlined">Totals</h2>
+    <section class="stats states--totals">
+      <article class="stats_stat">
+        <h3 class="stats_type">Cases</h3>
+        <div class="stats_count">{{ continent.cases|number_format }}</div>
+      </article>
+      <article class="stats_stat">
+        <h3 class="stats_type">Deaths</h3>
+        <div class="stats_count">{{ continent.deaths|number_format }}</div>
+      </article>
+      <article class="stats_stat">
+        <h3 class="stats_type">Recovered</h3>
+        <div class="stats_count">{{ continent.recovered|number_format }}</div>
+      </article>
+    </section>
+  </section>
+  <section class="last-updated">
+    <p>
+      <time datetime="{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}">Last updated: {{ continent.updated | date('relative') }}</time>
+    </p>
+  </section>
+
+  <section>
+    <h2 class="lead stats-detail">Coronavirus (COVID-19) cases for all countries in {{continent.continent}}</h2>
+    <div class="continents">
+      <ul class="countries">
+        {%- for countryName in continent.countries -%}
+          <li itemscope itemtype="http://schema.org/Country">
+            <link itemprop="url" href="/countries/{{ countryName | slug }}/" />
+            <a class="countries_country" href="/countries/{{ countryName | slug }}/">
+              <span itemprop="name">{{ countryName }}<span>
+            </a>
+          <li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+</section>
