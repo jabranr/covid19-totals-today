@@ -4,7 +4,7 @@ node_js:
   - 'lts/*'
 
 install:
-  - npm install
+  - npm install --verbose
 
 notifications:
   email:
@@ -12,6 +12,7 @@ notifications:
     on_failure: always
 
 before_deploy:
+  - ls -la node_modules/.bin
   - npm run build
 
 deploy:
