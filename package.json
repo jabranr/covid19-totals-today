@@ -24,6 +24,7 @@
   "prettier": "@jabranr-lab/prettier",
   "license": "MIT",
   "devDependencies": {
+    "@11ty/eleventy": "^0.11.0",
     "@jabranr-lab/prettier": "^1.2.0",
     "axios": "^0.20.0",
     "cloudflare": "^2.7.0",
@@ -36,9 +37,7 @@
     "normalize.css": "^8.0.1",
     "pretty-quick": "^3.0.2"
   },
-  "dependencies": {
-    "eleventy": "^1.0.6"
-  },
+  "dependencies": {},
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
