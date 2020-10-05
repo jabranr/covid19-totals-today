@@ -1,1 +1,3 @@
+Sitemap: https://covidtotals.today/sitemap.xml
+
 User-agent: *

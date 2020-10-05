@@ -43,7 +43,7 @@ renderData:
       "@type": "SpecialAnnouncement",
       "name": "Latest Coronavirus COVID-19 figures for {{country.country}}",
       "datePosted": "{{ country.updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
-      "expires": "{{ country.updated | date('6 hour') | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
+      "expires": "{{ country.updated | addDate(6, 'hour') | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
       "text": "In past 24 hours, {{country.country}}, {{country.continent}} had {{ country.todayCases|number_format }} new cases, {{ country.todayDeaths|number_format }} deaths and {{ country.todayRecovered|number_format }} recoveries.",
       "url": "{{ '/countries/' | absoluteUrl }}{{ country.country | slug }}/",
       "category": "https://www.wikidata.org/wiki/Q81068910",
@@ -130,7 +130,7 @@ renderData:
   </section>
   <section class="last-updated">
     <p>
-      <time datetime="{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}">Last updated: {{ country.updated | date('relative') }}</time>
+      <time datetime="{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}">Last updated: {{ country.updated | date('D MMM YYYY HH:mm:ss [UTC]') }}</time>
     </p>
   </section>
 </section>

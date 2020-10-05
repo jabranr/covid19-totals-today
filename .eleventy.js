@@ -1,12 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
+const slugify = require('slugify');
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
-const relativeTime = require('dayjs/plugin/relativeTime');
 
 dayjs.extend(utc);
-dayjs.extend(relativeTime);
 
 if (process.env.NODE_ENV !== 'production') {
   const dotenvFile = path.resolve(__dirname, `./.env.${process.env.NODE_ENV}`);
@@ -21,6 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const config = require('./_data/config');
+const { clean } = require('gh-pages');
 
 module.exports = function (eleventyConfig) {
   // copy static assets
@@ -35,6 +35,15 @@ module.exports = function (eleventyConfig) {
     return util.inspect(value, { depth: 5 });
   });
 
+  // customize slugify
+  eleventyConfig.addFilter('slug', function (value) {
+    const cleaned = value.replace(/\//gi, '-');
+    return slugify(cleaned, {
+      lower: true,
+      remove: /[\'\.\(\)\/]/gi
+    });
+  });
+
   // format numbers
   eleventyConfig.addFilter('number_format', function (value) {
     return Number(value).toLocaleString();
@@ -42,17 +51,20 @@ module.exports = function (eleventyConfig) {
 
   // format date time
   eleventyConfig.addFilter('date', function (value, format = 'DD MMM YYYY') {
-    if (format === 'relative') {
-      return dayjs.utc(value).fromNow();
+    if (value === undefined) {
+      return dayjs.utc().format(format);
     }
 
-    const [duration, type] = format.split(' ');
+    return dayjs.utc(Number(value)).format(format);
+  });
 
-    if (Boolean(type) && Boolean(duration)) {
-      return dayjs.utc(value).add(Number(duration), `${type}`);
+  // manipulate date time
+  eleventyConfig.addFilter('addDate', function (value, duration, type) {
+    if (Boolean(duration) && Boolean(type)) {
+      return dayjs.utc(Number(value)).add(duration, type);
     }
 
-    return dayjs.utc(value).format(format);
+    return dayjs.utc(Number(value));
   });
 
   // format date time

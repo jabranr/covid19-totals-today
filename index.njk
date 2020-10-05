@@ -9,7 +9,7 @@ layout: base.njk
   "@type": "SpecialAnnouncement",
   "name": "Latest Coronavirus COVID-19 global statistics",
   "datePosted": "{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
-  "expires": "{{ updated | date('6 hour') | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
+  "expires": "{{ updated | addDate(6, 'hour') | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
   "text": "In past 24 hours, there have been {{ todayCases|number_format }} new cases, {{ todayDeaths|number_format }} deaths and {{ todayRecovered|number_format }} recoveries around the world.",
   "url": "{{ '/' | absoluteUrl }}",
   "category": "https://www.wikidata.org/wiki/Q81068910",
@@ -89,7 +89,7 @@ layout: base.njk
   </div>
   <div class="last-updated">
     <p>
-      <time datetime="{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}">Last updated: {{ updated | date('relative') }}</time>
+      <time datetime="{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}">Last updated: {{ updated | date('D MMM YYYY HH:mm:ss [UTC]') }}</time>
     </p>
   </div>
 </section>

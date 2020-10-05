@@ -35,7 +35,7 @@ renderData:
       "@type": "SpecialAnnouncement",
       "name": "Latest Coronavirus COVID-19 figures for {{continent.continent}}",
       "datePosted": "{{ continent.updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
-      "expires": "{{ continent.updated | date('6 hour') | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
+      "expires": "{{ continent.updated | addDate(6, 'hour') | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
       "text": "In past 24 hours, {{continent.continent}} had {{ continent.todayCases|number_format }} new cases, {{ continent.todayDeaths|number_format }} deaths and {{ continent.todayRecovered|number_format }} recoveries.",
       "url": "{{ '/countries/' | absoluteUrl }}{{ continent.continent | slug }}/",
       "category": "https://www.wikidata.org/wiki/Q81068910",
@@ -73,7 +73,7 @@ renderData:
 {% endblock %}
 
 <section class="container breadcrumbs">
-  <a href="/">Home</a> &rsaquo; <a href="{{ '/continents/' | absoluteUrl }}{{ continent.continent | slug  }}/">{{ continent.continent | safe }}</a>
+  <a href="/">Home</a> &rsaquo; {{ continent.continent | safe }}
 </section>
 
 <section class="container-fluid bg-random">
@@ -122,7 +122,7 @@ renderData:
   </section>
   <section class="last-updated">
     <p>
-      <time datetime="{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}">Last updated: {{ continent.updated | date('relative') }}</time>
+      <time datetime="{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}">Last updated: {{ continent.updated | date }}</time>
     </p>
   </section>
 
