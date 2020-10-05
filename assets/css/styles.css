@@ -254,6 +254,18 @@ hr {
   text-decoration: none;
 }
 
+@media (min-width: 600px) {
+  .footer_inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.footer_list {
+  margin: 0;
+  padding: 0 0 0 1rem;
+}
+
 .bullets > *:not(:last-child)::after {
   content: '\2022';
   color: var(--cdt-dark-gray);
