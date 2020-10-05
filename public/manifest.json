@@ -1,24 +1,24 @@
 {
-  "short_name": "CovidDaily",
-  "name": "CovidDaily",
+  "short_name": "CovidLatest",
+  "name": "Covid latest",
   "icons": [
     {
-      "src": "./images/apple-touch-icon-114x114.png",
+      "src": "./assets/images/apple-touch-icon-114x114.png",
       "sizes": "57x57 114x114",
       "type": "image/png"
     },
     {
-      "src": "./images/apple-touch-icon-200x200.png",
+      "src": "./assets/images/apple-touch-icon-200x200.png",
       "sizes": "200x200",
       "type": "image/png"
     },
     {
-      "src": "./images/apple-touch-icon-512x512.png",
+      "src": "./assets/images/apple-touch-icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "./images/favicon.ico",
+      "src": "./assets/images/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
