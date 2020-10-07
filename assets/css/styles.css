@@ -131,12 +131,8 @@ hr {
   .stats_count {
     display: grid;
     place-content: start;
-    font-size: 4rem;
-    margin: 0;
-  }
-
-  .states--totals .stats_count {
     font-size: 3rem;
+    margin: 0;
   }
 }
 

@@ -20,7 +20,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const config = require('./_data/config');
-const { clean } = require('gh-pages');
 
 module.exports = function (eleventyConfig) {
   // copy static assets
@@ -51,6 +50,10 @@ module.exports = function (eleventyConfig) {
 
   // format date time
   eleventyConfig.addFilter('date', function (value, format = 'DD MMM YYYY') {
+    if (format === 'unix') {
+      return +dayjs.utc();
+    }
+
     if (value === undefined) {
       return dayjs.utc().format(format);
     }
@@ -82,7 +85,7 @@ module.exports = function (eleventyConfig) {
     callbacks: {
       ready: function (err, bs) {
         bs.addMiddleware('*', (req, res) => {
-          const content404 = fs.readFileSync('_site/404/index.html');
+          const content404 = fs.readFileSync('_site/404.html');
           res.write(content404);
           res.writeHead(404);
           res.end();

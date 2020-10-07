@@ -7,24 +7,24 @@ layout: base.njk
 {
   "@context": "https://schema.org",
   "@type": "SpecialAnnouncement",
-  "name": "Latest Coronavirus COVID-19 global statistics",
+  "name": "Latest Coronavirus COVID-19 global figures",
   "datePosted": "{{ updated | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
   "expires": "{{ updated | addDate(6, 'hour') | date('YYYY-MM-DD[T]HH:mm:ss[Z]') }}",
   "text": "In past 24 hours, there have been {{ todayCases|number_format }} new cases, {{ todayDeaths|number_format }} deaths and {{ todayRecovered|number_format }} recoveries around the world.",
   "url": "{{ '/' | absoluteUrl }}",
   "category": "https://www.wikidata.org/wiki/Q81068910",
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Global"
+  },
   "diseaseSpreadStatistics": {
     "@type": "Dataset",
-    "name": "Latest Coronavirus COVID-19 global statistics",
+    "name": "Latest Coronavirus COVID-19 global figures",
     "description": "In past 24 hours, there have been {{ todayCases|number_format }} new cases, {{ todayDeaths|number_format }} deaths and {{ todayRecovered|number_format }} recoveries around the world.",
     "distribution": {
       "@type": "DataDownload",
       "contentUrl": "https://disease.sh/v3/covid-19/all",
       "encodingFormat": "application/json"
-    },
-    "spatialCoverage": {
-      "@type": "Place",
-      "name": "Global"
     },
     "license": "https://github.com/disease-sh/API/blob/master/LICENSE",
     "creator": [
@@ -47,7 +47,7 @@ layout: base.njk
 <section class="container-fluid bg-random">
   <div class="container">
     <div>
-      <h2 class="lead">Coronavirus (COVID-19) global statistics</h2>
+      <h2 class="lead">Coronavirus (COVID-19) global figures</h2>
       <h3 class="underlined">Past 24 hours</h3>
     </div>
 
