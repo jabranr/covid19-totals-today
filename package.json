@@ -8,6 +8,8 @@
     "prebuild": "npm run data:clean && npm run data:prepare",
     "start": "NODE_ENV=development eleventy --serve",
     "build": "NODE_ENV=production eleventy",
+    "preview:build": "NODE_ENV=preview eleventy",
+    "preview": "serve -s _site",
     "cf:cache:purge": "node ./purge-cf-cache.js"
   },
   "keywords": [
@@ -33,9 +35,12 @@
     "dotenv-expand": "^5.1.0",
     "gh-pages": "^3.1.0",
     "husky": "^4.3.0",
+    "jimp": "^0.16.1",
     "lodash": "^4.17.20",
     "normalize.css": "^8.0.1",
-    "pretty-quick": "^3.0.2"
+    "pretty-quick": "^3.0.2",
+    "puppeteer": "^5.3.1",
+    "serve": "^11.3.2"
   },
   "dependencies": {},
   "husky": {

@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const slugify = require('slugify');
 const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
+
+const { toSlug } = require('./util');
 
 dayjs.extend(utc);
 
@@ -36,11 +37,7 @@ module.exports = function (eleventyConfig) {
 
   // customize slugify
   eleventyConfig.addFilter('slug', function (value) {
-    const cleaned = value.replace(/\//gi, '-');
-    return slugify(cleaned, {
-      lower: true,
-      remove: /[\'\.\(\)\/]/gi
-    });
+    return toSlug(value);
   });
 
   // format numbers
