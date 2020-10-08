@@ -57,7 +57,7 @@ renderData:
         "description": "In past 24 hours, {{country.country}}, {{country.continent}} had {{ country.todayCases|number_format }} new cases, {{ country.todayDeaths|number_format }} deaths and {{ country.todayRecovered|number_format }} recoveries.",
         "distribution": {
           "@type": "DataDownload",
-          "contentUrl": "https://disease.sh/v3/covid-19/countries/{{country.country}}",
+          "contentUrl": "https://disease.sh/v3/covid-19/countries/{{country.country | slug}}",
           "encodingFormat": "application/json"
         },
         "license": "https://github.com/disease-sh/API/blob/master/LICENSE",
@@ -113,7 +113,7 @@ renderData:
 <section class="container">
   <section>
     <h2 class="underlined">Totals</h2>
-    <section class="stats states--totals">
+    <section class="stats">
       <article class="stats_stat">
         <h3 class="stats_type">Cases</h3>
         <div class="stats_count">{{ country.cases|number_format }}</div>
