@@ -38,8 +38,7 @@
     "lodash": "^4.17.20",
     "normalize.css": "^8.0.1",
     "pretty-quick": "^3.0.2",
-    "puppeteer": "^5.3.1",
-    "serve": "^11.3.2"
+    "puppeteer": "^5.3.1"
   },
   "dependencies": {},
   "husky": {
