@@ -8,8 +8,7 @@
     "prebuild": "npm run data:clean && npm run data:prepare",
     "start": "NODE_ENV=development eleventy --serve",
     "build": "NODE_ENV=production eleventy",
-    "preview:build": "NODE_ENV=preview eleventy",
-    "preview": "serve -s _site",
+    "generate:og:images": "node ./generate-og-images.js",
     "cf:cache:purge": "node ./purge-cf-cache.js"
   },
   "keywords": [
