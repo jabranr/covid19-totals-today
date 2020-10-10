@@ -1,7 +1,6 @@
 const path = require('path');
 const puppeteer = require('puppeteer');
 const jimp = require('jimp');
-const { exec } = require('child_process');
 
 const { toSlug } = require('./util');
 const continents = require('./_data/continents.json');
@@ -34,12 +33,10 @@ async function capture(url, file, page) {
 }
 
 (async () => {
+  const generateOne = process.argv[2] === '--generate-one';
   const startTime = +new Date();
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
-
-  exec('ls -la _site');
-  exec('ls -la _site/assets/images/opengraph');
 
   await capture(
     `file://${path.resolve(__dirname, `_site/index.html`)}`,
@@ -47,21 +44,23 @@ async function capture(url, file, page) {
     page
   );
 
-  // for (const c of continents) {
-  //   await capture(
-  //     `file://${path.resolve(__dirname, `_site/continents/${toSlug(c.continent)}/index.html`)}`,
-  //     path.resolve(__dirname, `./_site/assets/images/opengraph/continents-${toSlug(c.continent)}.png`),
-  //     page
-  //   );
+  if (!generateOne) {
+    for (const c of continents) {
+      await capture(
+        `file://${path.resolve(__dirname, `_site/continents/${toSlug(c.continent)}/index.html`)}`,
+        path.resolve(__dirname, `./_site/assets/images/opengraph/continents-${toSlug(c.continent)}.png`),
+        page
+      );
 
-  //   for (const country of c.countries) {
-  //     await capture(
-  //       `file://${path.resolve(__dirname, `_site/countries/${toSlug(country)}/index.html`)}`,
-  //       path.resolve(__dirname, `./_site/assets/images/opengraph/countries-${toSlug(country)}.png`),
-  //       page
-  //     );
-  //   }
-  // }
+      for (const country of c.countries) {
+        await capture(
+          `file://${path.resolve(__dirname, `_site/countries/${toSlug(country)}/index.html`)}`,
+          path.resolve(__dirname, `./_site/assets/images/opengraph/countries-${toSlug(country)}.png`),
+          page
+        );
+      }
+    }
+  }
 
   browser.close();
   const totalTime = new Date(+new Date() - startTime).getSeconds();

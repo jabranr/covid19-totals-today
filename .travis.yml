@@ -6,13 +6,18 @@ node_js:
 install:
   - npm install
 
+script:
+  - npm run build
+
+after_script:
+  - npm run generate:og:images -- --generate-one
+
 notifications:
   email:
     on_success: never
     on_failure: always
 
 before_deploy:
-  - npm run build
   - npm run generate:og:images
 
 deploy:
