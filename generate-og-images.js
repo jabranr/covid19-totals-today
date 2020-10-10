@@ -1,6 +1,7 @@
 const path = require('path');
 const puppeteer = require('puppeteer');
 const jimp = require('jimp');
+const { exec } = require('child_process');
 
 const { toSlug } = require('./util');
 const continents = require('./_data/continents.json');
