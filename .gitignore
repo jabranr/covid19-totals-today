@@ -4,3 +4,4 @@ _site/
 _data/*
 !_data/config.js
 index.json
+assets/images/opengraph/*
