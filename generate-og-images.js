@@ -15,17 +15,17 @@ async function capture(url, file, page) {
     await page.screenshot({ path: file });
     console.log(`- Captured: ${file}`);
 
-    const [img, watermark] = await Promise.all([jimp.read(file), jimp.read(watermarkPath)]);
-    const composedImage = await img.composite(watermark, img.bitmap.width - (watermark.bitmap.width + 75), 75, [
-      {
-        mode: jimp.BLEND_SCREEN,
-        opacitySource: 0.1,
-        opacityDest: 1
-      }
-    ]);
+    // const [img, watermark] = await Promise.all([jimp.read(file), jimp.read(watermarkPath)]);
+    // const composedImage = await img.composite(watermark, img.bitmap.width - (watermark.bitmap.width + 75), 75, [
+    //   {
+    //     mode: jimp.BLEND_SCREEN,
+    //     opacitySource: 0.1,
+    //     opacityDest: 1
+    //   }
+    // ]);
 
-    await composedImage.writeAsync(file);
-    console.log(`- Watermarked: ${file}`);
+    // await composedImage.writeAsync(file);
+    // console.log(`- Watermarked: ${file}`);
     console.log(`======================`);
   } catch (err) {
     console.log(err);
@@ -47,21 +47,21 @@ async function capture(url, file, page) {
     page
   );
 
-  for (const c of continents) {
-    await capture(
-      `file://${path.resolve(__dirname, `_site/continents/${toSlug(c.continent)}/index.html`)}`,
-      path.resolve(__dirname, `./_site/assets/images/opengraph/continents-${toSlug(c.continent)}.png`),
-      page
-    );
+  // for (const c of continents) {
+  //   await capture(
+  //     `file://${path.resolve(__dirname, `_site/continents/${toSlug(c.continent)}/index.html`)}`,
+  //     path.resolve(__dirname, `./_site/assets/images/opengraph/continents-${toSlug(c.continent)}.png`),
+  //     page
+  //   );
 
-    for (const country of c.countries) {
-      await capture(
-        `file://${path.resolve(__dirname, `_site/countries/${toSlug(country)}/index.html`)}`,
-        path.resolve(__dirname, `./_site/assets/images/opengraph/countries-${toSlug(country)}.png`),
-        page
-      );
-    }
-  }
+  //   for (const country of c.countries) {
+  //     await capture(
+  //       `file://${path.resolve(__dirname, `_site/countries/${toSlug(country)}/index.html`)}`,
+  //       path.resolve(__dirname, `./_site/assets/images/opengraph/countries-${toSlug(country)}.png`),
+  //       page
+  //     );
+  //   }
+  // }
 
   browser.close();
   const totalTime = new Date(+new Date() - startTime).getSeconds();
