@@ -37,6 +37,9 @@ async function capture(url, file, page) {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
+  exec('ls -la _site');
+  exec('ls -la _site/assets/images/opengraph');
+
   await capture(
     `file://${path.resolve(__dirname, `_site/index.html`)}`,
     path.resolve(__dirname, `./_site/assets/images/opengraph/homepage.png`),
