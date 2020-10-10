@@ -39,21 +39,21 @@ async function capture(url, file, page) {
 
   await capture(
     `file://${path.resolve(__dirname, `_site/index.html`)}`,
-    path.resolve(__dirname, `./assets/images/opengraph/homepage.png`),
+    path.resolve(__dirname, `./_site/assets/images/opengraph/homepage.png`),
     page
   );
 
   for (const c of continents) {
     await capture(
       `file://${path.resolve(__dirname, `_site/continents/${toSlug(c.continent)}/index.html`)}`,
-      path.resolve(__dirname, `./assets/images/opengraph/continents-${toSlug(c.continent)}.png`),
+      path.resolve(__dirname, `./_site/assets/images/opengraph/continents-${toSlug(c.continent)}.png`),
       page
     );
 
     for (const country of c.countries) {
       await capture(
         `file://${path.resolve(__dirname, `_site/countries/${toSlug(country)}/index.html`)}`,
-        path.resolve(__dirname, `./assets/images/opengraph/countries-${toSlug(country)}.png`),
+        path.resolve(__dirname, `./_site/assets/images/opengraph/countries-${toSlug(country)}.png`),
         page
       );
     }
