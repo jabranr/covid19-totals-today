@@ -6,14 +6,23 @@
     <meta name="description" content="{{ (renderData and renderData.description) or description|default('Summary about number of new daily cases for Coronavirus COVID-19') }}" />
     <meta property="og:title" content="{{ (renderData and renderData.title) or title|default('Coronavirus COVID-19 - Latest daily figures') }}" />
     <meta property="og:description" content="{{ (renderData and renderData.description) or description|default('Summary about number of new daily cases for Coronavirus COVID-19') }}" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jabranr">
+    <meta name="twitter:creator" content="@jabranr">
+    <meta name="twitter:title" content="{{ (renderData and renderData.title) or title|default('Coronavirus COVID-19 - Latest daily figures') }}">
+    <meta name="twitter:description" content="{{ (renderData and renderData.description) or description|default('Summary about number of new daily cases for Coronavirus COVID-19') }}">
     {% if '/continents/' in page.url %}
       <meta property="og:image" content="{{ '/assets/images/opengraph' | absoluteUrl }}/{{page.url | replace('/', '', 1) | reverse | replace('/', '', 1) | reverse | slug}}.png?v={{ 'now' | date('unix') }}" />
+      <meta name="twitter:image" content="{{ '/assets/images/opengraph' | absoluteUrl }}/{{page.url | replace('/', '', 1) | reverse | replace('/', '', 1) | reverse | slug}}.png?v={{ 'now' | date('unix') }}">
     {% elif '/countries/' in page.url %}
       <meta property="og:image" content="{{ '/assets/images/opengraph' | absoluteUrl }}/{{page.url | replace('/', '', 1) | reverse | replace('/', '', 1) | reverse | slug}}.png?v={{ 'now' | date('unix') }}" />
+      <meta name="twitter:image" content="{{ '/assets/images/opengraph' | absoluteUrl }}/{{page.url | replace('/', '', 1) | reverse | replace('/', '', 1) | reverse | slug}}.png?v={{ 'now' | date('unix') }}">
     {% elif page.url == '/' %}
       <meta property="og:image" content="{{ '/assets/images/opengraph/homepage.png' | absoluteUrl }}?v={{ 'now' | date('unix') }}" />
+      <meta name="twitter:image" content="{{ '/assets/images/opengraph/homepage.png' | absoluteUrl }}?v={{ 'now' | date('unix') }}" />
     {% else %}
       <meta property="og:image" content="{{ '/assets/images/icon-1024x1024.png' | absoluteUrl }}" />
+      <meta name="twitter:image" content="{{ '/assets/images/icon-1024x1024.png' | absoluteUrl }}" />
     {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
