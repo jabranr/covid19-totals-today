@@ -1,7 +1,6 @@
 const path = require('path');
 const puppeteer = require('puppeteer');
 const jimp = require('jimp');
-const { exec } = require('child_process');
 
 const { toSlug } = require('./util');
 const continents = require('./_data/continents.json');
@@ -12,7 +11,7 @@ async function capture(url, file, page) {
     console.log(`- Visiting: ${url}`);
     await page.goto(url);
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
-    await page.screenshot({ path: file });
+    await page.screenshot({ path: file, type: 'png' });
     console.log(`- Captured: ${file}`);
 
     const [img, watermark] = await Promise.all([jimp.read(file), jimp.read(watermarkPath)]);
@@ -26,20 +25,23 @@ async function capture(url, file, page) {
 
     await composedImage.writeAsync(file);
     console.log(`- Watermarked: ${file}`);
-    console.log(`======================`);
   } catch (err) {
     console.log(err);
-    process.exit(0);
+    process.exit(1);
+  } finally {
+    console.log(`======================`);
   }
 }
 
 (async () => {
+  const generateOne = process.argv[2] === '--generate-one';
   const startTime = +new Date();
-  const browser = await puppeteer.launch({ headless: true });
-  const page = await browser.newPage();
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
 
-  exec('ls -la _site');
-  exec('ls -la _site/assets/images/opengraph');
+  const page = await browser.newPage();
 
   await capture(
     `file://${path.resolve(__dirname, `_site/index.html`)}`,
@@ -47,19 +49,21 @@ async function capture(url, file, page) {
     page
   );
 
-  for (const c of continents) {
-    await capture(
-      `file://${path.resolve(__dirname, `_site/continents/${toSlug(c.continent)}/index.html`)}`,
-      path.resolve(__dirname, `./_site/assets/images/opengraph/continents-${toSlug(c.continent)}.png`),
-      page
-    );
-
-    for (const country of c.countries) {
+  if (!generateOne) {
+    for (const c of continents) {
       await capture(
-        `file://${path.resolve(__dirname, `_site/countries/${toSlug(country)}/index.html`)}`,
-        path.resolve(__dirname, `./_site/assets/images/opengraph/countries-${toSlug(country)}.png`),
+        `file://${path.resolve(__dirname, `_site/continents/${toSlug(c.continent)}/index.html`)}`,
+        path.resolve(__dirname, `./_site/assets/images/opengraph/continents-${toSlug(c.continent)}.png`),
         page
       );
+
+      for (const country of c.countries) {
+        await capture(
+          `file://${path.resolve(__dirname, `_site/countries/${toSlug(country)}/index.html`)}`,
+          path.resolve(__dirname, `./_site/assets/images/opengraph/countries-${toSlug(country)}.png`),
+          page
+        );
+      }
     }
   }
 
