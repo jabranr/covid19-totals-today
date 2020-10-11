@@ -9,8 +9,6 @@ install:
 
 script:
   - npm run build
-
-after_script:
   - npm run generate:og:images -- --generate-one
 
 notifications:
