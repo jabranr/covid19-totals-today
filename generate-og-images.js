@@ -1,6 +1,7 @@
 const path = require('path');
 const puppeteer = require('puppeteer');
 const jimp = require('jimp');
+const fs = require('fs');
 
 const { toSlug } = require('./util');
 const continents = require('./_data/continents.json');
@@ -8,10 +9,12 @@ const watermarkPath = path.resolve(__dirname, './assets/images/apple-touch-icon-
 
 async function capture(url, file, page) {
   try {
+    console.log(fs.readdirSync('.'));
+    console.log('==============');
+    console.log(fs.readdirSync('./_site'));
     console.log(`- Visiting: ${url}`);
     await page.goto(url);
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
-    console.log(await page.content());
     await page.screenshot({ path: file, type: 'png' });
     console.log(`- Captured: ${file}`);
 
