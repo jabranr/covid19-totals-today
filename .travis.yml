@@ -9,6 +9,7 @@ install:
 
 script:
   - npm run build
+  - mkdir -p _site/assets/images/opengraph
   - npm run generate:og:images -- --generate-one
 
 notifications:

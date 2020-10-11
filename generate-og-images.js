@@ -1,7 +1,6 @@
 const path = require('path');
 const puppeteer = require('puppeteer');
 const jimp = require('jimp');
-const fs = require('fs');
 
 const { toSlug } = require('./util');
 const continents = require('./_data/continents.json');
@@ -12,22 +11,20 @@ async function capture(url, file, page) {
     console.log(`- Visiting: ${url}`);
     await page.goto(url);
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
-    console.log(fs.readdirSync('./_site/assets/images/'));
     await page.screenshot({ path: file, type: 'png' });
-    console.log(fs.readdirSync('./_site/assets/images/opengraph'));
     console.log(`- Captured: ${file}`);
 
-    // const [img, watermark] = await Promise.all([jimp.read(file), jimp.read(watermarkPath)]);
-    // const composedImage = await img.composite(watermark, img.bitmap.width - (watermark.bitmap.width + 75), 75, [
-    //   {
-    //     mode: jimp.BLEND_SCREEN,
-    //     opacitySource: 0.1,
-    //     opacityDest: 1
-    //   }
-    // ]);
+    const [img, watermark] = await Promise.all([jimp.read(file), jimp.read(watermarkPath)]);
+    const composedImage = await img.composite(watermark, img.bitmap.width - (watermark.bitmap.width + 75), 75, [
+      {
+        mode: jimp.BLEND_SCREEN,
+        opacitySource: 0.1,
+        opacityDest: 1
+      }
+    ]);
 
-    // await composedImage.writeAsync(file);
-    // console.log(`- Watermarked: ${file}`);
+    await composedImage.writeAsync(file);
+    console.log(`- Watermarked: ${file}`);
   } catch (err) {
     console.log(err);
     process.exit(1);
@@ -48,7 +45,7 @@ async function capture(url, file, page) {
 
   await capture(
     `file://${path.resolve(__dirname, `_site/index.html`)}`,
-    `./_site/assets/images/opengraph/homepage.png`,
+    path.resolve(__dirname, `./_site/assets/images/opengraph/homepage.png`),
     page
   );
 
