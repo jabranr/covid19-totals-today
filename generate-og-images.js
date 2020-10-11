@@ -12,7 +12,7 @@ async function capture(url, file, page) {
     console.log(`- Visiting: ${url}`);
     await page.goto(url);
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
-    console.log(fs.readdirSync('./_site/assets/images/opengraph'));
+    console.log(fs.readdirSync('./_site/assets/images/'));
     await page.screenshot({ path: file, type: 'png' });
     console.log(fs.readdirSync('./_site/assets/images/opengraph'));
     console.log(`- Captured: ${file}`);
