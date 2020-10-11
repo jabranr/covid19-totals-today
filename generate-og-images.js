@@ -25,10 +25,11 @@ async function capture(url, file, page) {
 
     await composedImage.writeAsync(file);
     console.log(`- Watermarked: ${file}`);
-    console.log(`======================`);
   } catch (err) {
     console.log(err);
-    process.exit(0);
+    process.exit(1);
+  } finally {
+    console.log(`======================`);
   }
 }
 
