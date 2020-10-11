@@ -36,7 +36,11 @@ async function capture(url, file, page) {
 (async () => {
   const generateOne = process.argv[2] === '--generate-one';
   const startTime = +new Date();
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+
   const page = await browser.newPage();
 
   await capture(

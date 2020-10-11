@@ -1,7 +1,8 @@
 language: node_js
-
-node_js:
-  - 'lts/*'
+services: xvfb
+node_js: 'lts/*'
+env:
+  - CHROMIUM=true
 
 install:
   - npm install
@@ -13,9 +14,7 @@ after_script:
   - npm run generate:og:images -- --generate-one
 
 notifications:
-  email:
-    on_success: never
-    on_failure: always
+  email: false
 
 before_deploy:
   - npm run generate:og:images
