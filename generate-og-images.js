@@ -9,13 +9,12 @@ const watermarkPath = path.resolve(__dirname, './assets/images/apple-touch-icon-
 
 async function capture(url, file, page) {
   try {
-    console.log(fs.readdirSync('.'));
-    console.log('==============');
-    console.log(fs.readdirSync('./_site'));
     console.log(`- Visiting: ${url}`);
     await page.goto(url);
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
+    console.log(fs.readdirSync('./_site/assets/images/opengraph'));
     await page.screenshot({ path: file, type: 'png' });
+    console.log(fs.readdirSync('./_site/assets/images/opengraph'));
     console.log(`- Captured: ${file}`);
 
     // const [img, watermark] = await Promise.all([jimp.read(file), jimp.read(watermarkPath)]);
