@@ -11,7 +11,8 @@ async function capture(url, file, page) {
     console.log(`- Visiting: ${url}`);
     await page.goto(url);
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
-    await page.screenshot({ path: file });
+    console.log(await page.content());
+    await page.screenshot({ path: file, type: 'png' });
     console.log(`- Captured: ${file}`);
 
     // const [img, watermark] = await Promise.all([jimp.read(file), jimp.read(watermarkPath)]);
@@ -45,7 +46,7 @@ async function capture(url, file, page) {
 
   await capture(
     `file://${path.resolve(__dirname, `_site/index.html`)}`,
-    path.resolve(__dirname, `./_site/assets/images/opengraph/homepage.png`),
+    `./_site/assets/images/opengraph/homepage.png`,
     page
   );
 
