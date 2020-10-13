@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
   <head>
     <meta charset="UTF-8" />
     <title>{{ (renderData and renderData.title) or title|default('Coronavirus COVID-19 - Latest daily figures') }}</title>
     <meta name="description" content="{{ (renderData and renderData.description) or description|default('Summary about number of new daily cases for Coronavirus COVID-19') }}" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ (renderData and renderData.title) or title|default('Coronavirus COVID-19 - Latest daily figures') }}" />
     <meta property="og:description" content="{{ (renderData and renderData.description) or description|default('Summary about number of new daily cases for Coronavirus COVID-19') }}" />
     <meta name="twitter:card" content="summary_large_image">
@@ -29,10 +30,11 @@
     <meta name="msapplication-TileImage" content="{{ '/assets/images/apple-touch-icon-114x114.png' | absoluteUrl }}" />
     <meta name="theme-color" content="#f55555" />
     {% if page.url == '/404.html' %}
-    <meta property="robots" content="noindex, nofollow" />
+      <meta property="robots" content="noindex, nofollow" />
     {% else %}
-    <meta property="robots" content="all" />
-    <meta property="canonical" content="{{ page.url | absoluteUrl }}{% if page.url == '/' %}/{% endif %}" />
+      <meta property="robots" content="all" />
+      <meta property="og:link" content="{{ page.url | absoluteUrl }}{% if page.url == '/' %}/{% endif %}">
+      <link rel="canonical" href="{{ page.url | absoluteUrl }}{% if page.url == '/' %}/{% endif %}" />
     {% endif %}
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.google-analytics.com" />

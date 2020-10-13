@@ -78,10 +78,7 @@ renderData:
 
 <section class="container-fluid bg-random">
   <section class="container">
-    <section>
-      <img class="flag" src="{{continent.continentInfo.flag}}" width="30px" lazy />
-    </section>
-    <h1 class="lead">Coronavirus (COVID-19) cases in {{continent.continent}}</h1>
+    <h1 class="lead">Coronavirus COVID-19 cases in {{continent.continent}}</h1>
     <section>
       <h2 class="underlined">Past 24 hours</h2>
       <section class="stats">
@@ -127,7 +124,7 @@ renderData:
   </section>
 
   <section>
-    <h2 class="lead stats-detail">Coronavirus (COVID-19) cases for all countries in {{continent.continent}}</h2>
+    <h2 class="lead stats-detail">Coronavirus COVID-19 cases for all countries in {{continent.continent}}</h2>
     <div class="continents">
       <ul class="countries">
         {%- for countryName in continent.countries -%}

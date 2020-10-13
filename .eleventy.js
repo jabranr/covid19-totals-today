@@ -42,6 +42,10 @@ module.exports = function (eleventyConfig) {
 
   // format numbers
   eleventyConfig.addFilter('number_format', function (value) {
+    if (Number(value) === 0) {
+      return 'N/A';
+    }
+
     return Number(value).toLocaleString();
   });
 

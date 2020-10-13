@@ -87,23 +87,23 @@ renderData:
 <section class="container-fluid bg-random">
   <section class="container">
     <section>
-      <img class="flag" src="{{country.countryInfo.flag}}" width="30px" lazy />
+      <img alt="Flag of {{country.country}}" class="flag" src="{{country.countryInfo.flag}}" width="30px" lazy />
     </section>
-    <h1 class="lead">Coronavirus (COVID-19) cases in {{country.country}}</h1>
+    <h1 class="lead">Coronavirus COVID-19 cases in {{country.country}}</h1>
     <section>
       <h2 class="underlined">Past 24 hours</h2>
       <section class="stats">
         <article class="stats_stat">
           <h3 class="stats_type">Cases</h3>
-          <div class="stats_count">{{ country.todayCases|number_format }}</div>
+          <div class="stats_count">{{ country.todayCases | number_format }}</div>
         </article>
         <article class="stats_stat">
           <h3 class="stats_type">Deaths</h3>
-          <div class="stats_count">{{ country.todayDeaths|number_format }}</div>
+          <div class="stats_count">{{ country.todayDeaths | number_format }}</div>
         </article>
         <article class="stats_stat">
           <h3 class="stats_type">Recovered</h3>
-          <div class="stats_count">{{ country.todayRecovered|number_format }}</div>
+          <div class="stats_count">{{ country.todayRecovered | number_format }}</div>
         </article>
       </section>
     </section>
@@ -116,15 +116,15 @@ renderData:
     <section class="stats">
       <article class="stats_stat">
         <h3 class="stats_type">Cases</h3>
-        <div class="stats_count">{{ country.cases|number_format }}</div>
+        <div class="stats_count">{{ country.cases | number_format }}</div>
       </article>
       <article class="stats_stat">
         <h3 class="stats_type">Deaths</h3>
-        <div class="stats_count">{{ country.deaths|number_format }}</div>
+        <div class="stats_count">{{ country.deaths | number_format }}</div>
       </article>
       <article class="stats_stat">
         <h3 class="stats_type">Recovered</h3>
-        <div class="stats_count">{{ country.recovered|number_format }}</div>
+        <div class="stats_count">{{ country.recovered | number_format }}</div>
       </article>
     </section>
   </section>
