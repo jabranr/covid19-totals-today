@@ -1,8 +1,9 @@
 ---
 layout: base.njk
 renderData:
-  title: 'Latest Coronavirus COVID-19 figures for {{continent.continent}}'
+  title: '{{continent.continent}}, latest Coronavirus COVID-19 cases, deaths & recoveries'
   description: 'In past 24 hours, {{continent.continent}} had {{ continent.todayCases|number_format }} new cases, {{ continent.todayDeaths|number_format }} deaths and {{ continent.todayRecovered|number_format }} recoveries.'
+  keywords: '{{continent.continent}}, {{continent.continent | slug}}'
 ---
 {% block schema %}
 <script type="application/ld+json">
