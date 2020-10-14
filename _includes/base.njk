@@ -34,7 +34,7 @@
       <meta property="robots" content="noindex, nofollow" />
     {% else %}
       <meta property="robots" content="all" />
-      <meta property="og:link" content="{{ page.url | absoluteUrl }}{% if page.url == '/' %}/{% endif %}">
+      <meta property="og:url" content="{{ page.url | absoluteUrl }}{% if page.url == '/' %}/{% endif %}">
       <link rel="canonical" href="{{ page.url | absoluteUrl }}{% if page.url == '/' %}/{% endif %}" />
     {% endif %}
     <link rel="preconnect" href="https://www.googletagmanager.com" />
