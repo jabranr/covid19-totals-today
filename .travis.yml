@@ -19,6 +19,7 @@ before_deploy:
   - npm run generate:og:images
 
 deploy:
+  edge: true
   provider: pages
   skip_cleanup: true
   keep_history: true
