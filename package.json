@@ -25,20 +25,20 @@
   "prettier": "@jabranr-lab/prettier",
   "license": "MIT",
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.0",
-    "@jabranr-lab/prettier": "^1.2.0",
-    "axios": "^0.20.0",
+    "@11ty/eleventy": "^0.11.1",
+    "@jabranr-lab/prettier": "^1.2.1",
+    "axios": "^0.21.0",
     "cloudflare": "^2.7.0",
-    "dayjs": "^1.9.1",
+    "dayjs": "^1.9.7",
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
     "gh-pages": "^3.1.0",
-    "husky": "^4.3.0",
+    "husky": "^4.3.6",
     "jimp": "^0.16.1",
     "lodash": "^4.17.20",
     "normalize.css": "^8.0.1",
-    "pretty-quick": "^3.0.2",
-    "puppeteer": "^5.3.1"
+    "pretty-quick": "^3.1.0",
+    "puppeteer": "^5.5.0"
   },
   "dependencies": {},
   "husky": {
