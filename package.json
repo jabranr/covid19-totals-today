@@ -8,6 +8,8 @@
     "prebuild": "npm run data:clean && npm run data:prepare",
     "start": "NODE_ENV=development eleventy --serve",
     "build": "NODE_ENV=production eleventy",
+    "predeploy": "npm run generate:og:images",
+    "delpoy": "gh-pages -d _site -b gh-pages",
     "generate:og:images": "node ./generate-og-images.js",
     "cf:cache:purge": "node ./purge-cf-cache.js"
   },
