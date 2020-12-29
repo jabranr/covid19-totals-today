@@ -8,16 +8,14 @@ const { toSlug } = require('./util');
 
 dayjs.extend(utc);
 
-if (process.env.NODE_ENV !== 'production') {
-  const dotenvFile = path.resolve(__dirname, `./.env.${process.env.NODE_ENV}`);
+const dotenvFile = path.resolve(__dirname, `./.env.${process.env.NODE_ENV}`);
 
-  if (fs.existsSync(dotenvFile)) {
-    require('dotenv-expand')(
-      require('dotenv').config({
-        path: dotenvFile
-      })
-    );
-  }
+if (fs.existsSync(dotenvFile)) {
+  require('dotenv-expand')(
+    require('dotenv').config({
+      path: dotenvFile
+    })
+  );
 }
 
 const config = require('./_data/config');
