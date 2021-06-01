@@ -24,16 +24,9 @@ jobs:
         run: |
           git config --global user.email "hello@jabran.me"
           git config --global user.name "Jabran Rafique"
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git remote set-url origin https://git:${{ secrets.GITHUB_TOKEN }}@github.com/${{ secrets.GITHUB_REPOSITORY }}.git
           npm run deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
 
       - name: run clear cache script
         run: |
           npm run cf:cache:purge
-        env:
-          CF_EMAIL: ${{ env.CF_EMAIL }}
-          CF_TOKEN: ${{ env.CF_TOKEN }}
-          CF_ZONE_ID: ${{ env.CF_ZONE_ID }}
