@@ -29,11 +29,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
-
-      - name: Clear Cloudflare cache
-        run: |
-          npm run cf:cache:purge
-        env:
-          CF_EMAIL: ${{ env.CF_EMAIL }}
-          CF_TOKEN: ${{ env.CF_TOKEN }}
-          CF_ZONE_ID: ${{ env.CF_ZONE_ID }}
