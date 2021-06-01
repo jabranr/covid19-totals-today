@@ -34,6 +34,6 @@ jobs:
         run: |
           npm run cf:cache:purge
         env:
-          CF_EMAIL: ${{ secrets.CF_EMAIL }}
-          CF_TOKEN: ${{ secrets.CF_TOKEN }}
-          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          CF_EMAIL: ${{ env.CF_EMAIL }}
+          CF_TOKEN: ${{ env.CF_TOKEN }}
+          CF_ZONE_ID: ${{ env.CF_ZONE_ID }}
