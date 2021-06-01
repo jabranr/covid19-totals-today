@@ -26,6 +26,9 @@ jobs:
           git config --global user.name "Jabran Rafique"
           git remote set-url origin https://git:${{ secrets.GITHUB_TOKEN }}@github.com/${{ secrets.GITHUB_REPOSITORY }}.git
           npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
 
       - name: run clear cache script
         run: |
