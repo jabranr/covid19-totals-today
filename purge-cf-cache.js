@@ -1,6 +1,3 @@
-// dump environment variables
-console.log(process.env);
-
 if (!process.env.CF_EMAIL || !process.env.CF_TOKEN || !process.env.CF_ZONE_ID) {
   console.log('- Cannot purge Cloudflare cache due to missing required values');
   return;
