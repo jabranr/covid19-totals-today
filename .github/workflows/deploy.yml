@@ -7,10 +7,10 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout latest master
+      - name: Checkout
         uses: actions/checkout@v2.3.1
 
-      - name: Install and Build
+      - name: Install
         run: |
           npm install
 
@@ -20,8 +20,13 @@ jobs:
 
       - name: Deploy
         run: |
+          git config --global user.email "hello@jabran.me"
+          git config --global user.name "Jabran Rafique"
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
 
       - name: Clear Cloudflare cache
         run: |
