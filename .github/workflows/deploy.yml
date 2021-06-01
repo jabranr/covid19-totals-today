@@ -29,3 +29,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+
+      - name: run clear cache script
+        run: |
+          npm run cf:cache:purge
+        env:
+          CF_EMAIL: ${{ secrets.CF_EMAIL }}
+          CF_TOKEN: ${{ secrets.CF_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
