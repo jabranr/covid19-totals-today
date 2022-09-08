@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://covidtotals.today/sitemap.xml
+Sitemap: https://covid19-today.pages.dev/sitemap.xml

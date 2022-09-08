@@ -1,6 +1,6 @@
 {
-  "short_name": "CovidLatest",
-  "name": "Covid latest",
+  "short_name": "Covid19Today",
+  "name": "Covid19 Today",
   "icons": [
     {
       "src": "./assets/images/apple-touch-icon-114x114.png",
